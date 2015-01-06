@@ -1,5 +1,5 @@
 Vectors for purescript. 
-Started with this for 
+Started with this for purescript-webgl binding.
 
 This module should be imported qualified, like 
 ~~~
