@@ -2,189 +2,508 @@
 
 ## Module Data.TypeNat
 
-### Types
+#### `Zero`
 
-    newtype Four where
-      Four :: Suc (Suc (Suc (Suc Zero))) -> Four
+``` purescript
+data Zero
+```
 
-    newtype One where
-      One :: Suc Zero -> One
+#### `Suc`
 
-    data Suc a
-
-    newtype Three where
-      Three :: Suc (Suc (Suc Zero)) -> Three
-
-    newtype Two where
-      Two :: Suc (Suc Zero) -> Two
-
-    data Zero
+``` purescript
+data Suc a
+```
 
 
-### Type Classes
+#### `One`
 
-    class Sized a where
-      sized :: a -> Number
+``` purescript
+newtype One
+  = One (Suc Zero)
+```
+
+
+#### `Two`
+
+``` purescript
+newtype Two
+  = Two (Suc (Suc Zero))
+```
+
+
+#### `Three`
+
+``` purescript
+newtype Three
+  = Three (Suc (Suc (Suc Zero)))
+```
+
+
+#### `Four`
+
+``` purescript
+newtype Four
+  = Four (Suc (Suc (Suc (Suc Zero))))
+```
+
+
+#### `Sized`
+
+``` purescript
+class Sized a where
+  sized :: a -> Number
+```
+
 
 
 ## Module Data.Vector
 
-### Types
+#### `Vec`
 
-    newtype Vec s a where
-      Vec :: [a] -> Vec s a
-
-
-### Type Classes
-
-    class (Sized v) <= Vector v where
+``` purescript
+newtype Vec s a
+  = Vec [a]
+```
 
 
-### Type Class Instances
+#### `Vector`
 
-    instance applyVec :: Apply (Vec s)
-
-    instance eqVec :: (Eq a) => Eq (Vec s a)
-
-    instance foldableVector :: Foldable (Vec s)
-
-    instance functorVec :: Functor (Vec s)
-
-    instance showVec :: (Show a) => Show (Vec s a)
-
-    instance sv1 :: Sized (Vec One a)
-
-    instance sv2 :: Sized (Vec Two a)
-
-    instance sv3 :: Sized (Vec Three a)
-
-    instance sv4 :: Sized (Vec Four a)
+``` purescript
+class (Sized v) <= Vector v where
+```
 
 
-### Values
+#### `sv1`
 
-    add :: forall a s. (Num a) => Vec s a -> Vec s a -> Vec s a
+``` purescript
+instance sv1 :: Sized (Vec One a)
+```
 
-    direction :: forall s. Vec s Number -> Vec s Number -> Vec s Number
 
-    distance :: forall s. Vec s Number -> Vec s Number -> Number
+#### `sv2`
 
-    distanceSquared :: forall s. Vec s Number -> Vec s Number -> Number
+``` purescript
+instance sv2 :: Sized (Vec Two a)
+```
 
-    dot :: forall s. Vec s Number -> Vec s Number -> Number
 
-    fromArray :: forall s a. (Vector (Vec s a)) => [a] -> Vec s a
+#### `sv3`
 
-    mult :: forall a s. (Num a) => Vec s a -> Vec s a -> Vec s a
+``` purescript
+instance sv3 :: Sized (Vec Three a)
+```
 
-    normalize :: forall s. Vec s Number -> Vec s Number
 
-    scale :: forall a s. (Num a) => a -> Vec s a -> Vec s a
+#### `sv4`
 
-    sub :: forall a s. (Num a) => Vec s a -> Vec s a -> Vec s a
+``` purescript
+instance sv4 :: Sized (Vec Four a)
+```
 
-    toArray :: forall s a. Vec s a -> [a]
 
-    vlength :: forall s. Vec s Number -> Number
+#### `fromArray`
 
-    vlengthSquared :: forall s. Vec s Number -> Number
+``` purescript
+fromArray :: forall s a. (Vector (Vec s a)) => [a] -> Vec s a
+```
 
-    vnegate :: forall a s. (Num a) => Vec s a -> Vec s a
+
+#### `toArray`
+
+``` purescript
+toArray :: forall s a. Vec s a -> [a]
+```
+
+
+#### `eqVec`
+
+``` purescript
+instance eqVec :: (Eq a) => Eq (Vec s a)
+```
+
+
+#### `showVec`
+
+``` purescript
+instance showVec :: (Show a) => Show (Vec s a)
+```
+
+
+#### `functorVec`
+
+``` purescript
+instance functorVec :: Functor (Vec s)
+```
+
+
+#### `applyVec`
+
+``` purescript
+instance applyVec :: Apply (Vec s)
+```
+
+
+#### `foldableVector`
+
+``` purescript
+instance foldableVector :: Foldable (Vec s)
+```
+
+
+#### `add`
+
+``` purescript
+add :: forall a s. (Num a) => Vec s a -> Vec s a -> Vec s a
+```
+
+
+#### `sub`
+
+``` purescript
+sub :: forall a s. (Num a) => Vec s a -> Vec s a -> Vec s a
+```
+
+
+#### `mult`
+
+``` purescript
+mult :: forall a s. (Num a) => Vec s a -> Vec s a -> Vec s a
+```
+
+
+#### `vnegate`
+
+``` purescript
+vnegate :: forall a s. (Num a) => Vec s a -> Vec s a
+```
+
+
+#### `direction`
+
+``` purescript
+direction :: forall s. Vec s Number -> Vec s Number -> Vec s Number
+```
+
+The normalized direction from a to b: (a - b) / |a - b|
+
+#### `vlengthSquared`
+
+``` purescript
+vlengthSquared :: forall s. Vec s Number -> Number
+```
+
+The length of the given vector: |a|
+
+#### `vlength`
+
+``` purescript
+vlength :: forall s. Vec s Number -> Number
+```
+
+The length of the given vector: |a|
+
+#### `normalize`
+
+``` purescript
+normalize :: forall s. Vec s Number -> Vec s Number
+```
+
+#### `distanceSquared`
+
+``` purescript
+distanceSquared :: forall s. Vec s Number -> Vec s Number -> Number
+```
+
+The distance between two vectors.
+
+#### `distance`
+
+``` purescript
+distance :: forall s. Vec s Number -> Vec s Number -> Number
+```
+
+The distance between two vectors.
+
+#### `scale`
+
+``` purescript
+scale :: forall a s. (Num a) => a -> Vec s a -> Vec s a
+```
+
+Multiply the vector by a scalar: s * v
+
+#### `dot`
+
+``` purescript
+dot :: forall s. Vec s Number -> Vec s Number -> Number
+```
+
+The dot product of a and b
 
 
 ## Module Data.Vector2
 
-### Types
+#### `Vec2`
 
-    type Vec2 = Vec Two
+``` purescript
+type Vec2 = Vec Two
+```
 
 
-### Values
+#### `vec2`
 
-    getX :: forall a. Vec2 a -> a
+``` purescript
+vec2 :: forall a. a -> a -> Vec2 a
+```
 
-    getY :: forall a. Vec2 a -> a
 
-    i :: Vec2 Number
+#### `vec2'`
 
-    j :: Vec2 Number
+``` purescript
+vec2' :: forall a. [a] -> Vec2 a
+```
 
-    setX :: forall a. a -> Vec2 a -> Vec2 a
 
-    setY :: forall a. a -> Vec2 a -> Vec2 a
+#### `i`
 
-    vec2 :: forall a. a -> a -> Vec2 a
+``` purescript
+i :: Vec2 Number
+```
 
-    vec2' :: forall a. [a] -> Vec2 a
+
+#### `j`
+
+``` purescript
+j :: Vec2 Number
+```
+
+
+#### `getX`
+
+``` purescript
+getX :: forall a. Vec2 a -> a
+```
+
+
+#### `getY`
+
+``` purescript
+getY :: forall a. Vec2 a -> a
+```
+
+
+#### `setX`
+
+``` purescript
+setX :: forall a. a -> Vec2 a -> Vec2 a
+```
+
+
+#### `setY`
+
+``` purescript
+setY :: forall a. a -> Vec2 a -> Vec2 a
+```
+
 
 
 ## Module Data.Vector3
 
-### Types
+#### `Vec3`
 
-    type Vec3 = Vec Three
+``` purescript
+type Vec3 = Vec Three
+```
 
 
-### Values
+#### `vec3`
 
-    cross :: forall a. (Num a) => Vec3 a -> Vec3 a -> Vec3 a
+``` purescript
+vec3 :: forall a. a -> a -> a -> Vec3 a
+```
 
-    getX :: forall a. Vec3 a -> a
 
-    getY :: forall a. Vec3 a -> a
+#### `vec3'`
 
-    getZ :: forall a. Vec3 a -> a
+``` purescript
+vec3' :: forall a. [a] -> Vec3 a
+```
 
-    i :: Vec3 Number
 
-    j :: Vec3 Number
+#### `i`
 
-    k :: Vec3 Number
+``` purescript
+i :: Vec3 Number
+```
 
-    setX :: forall a. a -> Vec3 a -> Vec3 a
 
-    setY :: forall a. a -> Vec3 a -> Vec3 a
+#### `j`
 
-    setZ :: forall a. a -> Vec3 a -> Vec3 a
+``` purescript
+j :: Vec3 Number
+```
 
-    vec3 :: forall a. a -> a -> a -> Vec3 a
 
-    vec3' :: forall a. [a] -> Vec3 a
+#### `k`
+
+``` purescript
+k :: Vec3 Number
+```
+
+
+#### `getX`
+
+``` purescript
+getX :: forall a. Vec3 a -> a
+```
+
+
+#### `getY`
+
+``` purescript
+getY :: forall a. Vec3 a -> a
+```
+
+
+#### `getZ`
+
+``` purescript
+getZ :: forall a. Vec3 a -> a
+```
+
+
+#### `setX`
+
+``` purescript
+setX :: forall a. a -> Vec3 a -> Vec3 a
+```
+
+
+#### `setY`
+
+``` purescript
+setY :: forall a. a -> Vec3 a -> Vec3 a
+```
+
+
+#### `setZ`
+
+``` purescript
+setZ :: forall a. a -> Vec3 a -> Vec3 a
+```
+
+
+#### `cross`
+
+``` purescript
+cross :: forall a. (Num a) => Vec3 a -> Vec3 a -> Vec3 a
+```
+
+The cross product of a and b
 
 
 ## Module Data.Vector4
 
-### Types
+#### `Vec4`
 
-    type Vec4 = Vec Four
+``` purescript
+type Vec4 = Vec Four
+```
 
 
-### Values
+#### `vec4`
 
-    getU :: forall a. Vec4 a -> a
+``` purescript
+vec4 :: forall a. a -> a -> a -> a -> Vec4 a
+```
 
-    getX :: forall a. Vec4 a -> a
 
-    getY :: forall a. Vec4 a -> a
+#### `vec4'`
 
-    getZ :: forall a. Vec4 a -> a
+``` purescript
+vec4' :: forall a. [a] -> Vec4 a
+```
 
-    i :: Vec4 Number
 
-    j :: Vec4 Number
+#### `i`
 
-    k :: Vec4 Number
+``` purescript
+i :: Vec4 Number
+```
 
-    l :: Vec4 Number
 
-    setU :: forall a. a -> Vec4 a -> Vec4 a
+#### `j`
 
-    setX :: forall a. a -> Vec4 a -> Vec4 a
+``` purescript
+j :: Vec4 Number
+```
 
-    setY :: forall a. a -> Vec4 a -> Vec4 a
 
-    setZ :: forall a. a -> Vec4 a -> Vec4 a
+#### `k`
 
-    vec4 :: forall a. a -> a -> a -> a -> Vec4 a
+``` purescript
+k :: Vec4 Number
+```
 
-    vec4' :: forall a. [a] -> Vec4 a
+
+#### `l`
+
+``` purescript
+l :: Vec4 Number
+```
+
+
+#### `getX`
+
+``` purescript
+getX :: forall a. Vec4 a -> a
+```
+
+
+#### `getY`
+
+``` purescript
+getY :: forall a. Vec4 a -> a
+```
+
+
+#### `getZ`
+
+``` purescript
+getZ :: forall a. Vec4 a -> a
+```
+
+
+#### `getU`
+
+``` purescript
+getU :: forall a. Vec4 a -> a
+```
+
+
+#### `setX`
+
+``` purescript
+setX :: forall a. a -> Vec4 a -> Vec4 a
+```
+
+
+#### `setY`
+
+``` purescript
+setY :: forall a. a -> Vec4 a -> Vec4 a
+```
+
+
+#### `setZ`
+
+``` purescript
+setZ :: forall a. a -> Vec4 a -> Vec4 a
+```
+
+
+#### `setU`
+
+``` purescript
+setU :: forall a. a -> Vec4 a -> Vec4 a
+```
