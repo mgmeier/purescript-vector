@@ -14,10 +14,12 @@
 
 module Data.Vector4 where
 
+import Prelude
 import Data.Vector
 import Data.TypeNat
 import Data.Array
-import Prelude.Unsafe
+import Data.Array.Unsafe (unsafeIndex)
+import Data.Maybe.Unsafe (fromJust)
 import Math
 
 type Vec4 = Vec Four
@@ -25,38 +27,38 @@ type Vec4 = Vec Four
 vec4 :: forall a. a -> a -> a -> a -> Vec4 a
 vec4 x y z u = Vec [x,y,z,u]
 
-vec4' :: forall a. [a] -> Vec4 a
+vec4' :: forall a. Array a -> Vec4 a
 vec4' array | length array == 4 = Vec array
 
-i :: Vec4 Number
-i = Vec [1,0,0,0]
-j :: Vec4 Number
-j = Vec [0,1,0,0]
-k :: Vec4 Number
-k = Vec [0,0,1,0]
-l :: Vec4 Number
-l = Vec [0,0,0,1]
+i4 :: Vec4 Number
+i4 = Vec [1.0,0.0,0.0,0.0]
+j4 :: Vec4 Number
+j4 = Vec [0.0,1.0,0.0,0.0]
+k4 :: Vec4 Number
+k4 = Vec [0.0,0.0,1.0,0.0]
+l4 :: Vec4 Number
+l4 = Vec [0.0,0.0,0.0,1.0]
 
-getX :: forall a. Vec4 a -> a
-getX (Vec v) = unsafeIndex v 0
+get4X :: forall a. Vec4 a -> a
+get4X (Vec v) = unsafeIndex v 0
 
-getY :: forall a. Vec4 a -> a
-getY (Vec v) = unsafeIndex v 1
+get4Y :: forall a. Vec4 a -> a
+get4Y (Vec v) = unsafeIndex v 1
 
-getZ :: forall a. Vec4 a -> a
-getZ (Vec v) = unsafeIndex v 2
+get4Z :: forall a. Vec4 a -> a
+get4Z (Vec v) = unsafeIndex v 2
 
-getU :: forall a. Vec4 a -> a
-getU (Vec v) = unsafeIndex v 3
+get4U :: forall a. Vec4 a -> a
+get4U (Vec v) = unsafeIndex v 3
 
-setX :: forall a. a -> Vec4 a -> Vec4 a
-setX n (Vec v) = Vec (insertAt 0 n v)
+set4X :: forall a. a -> Vec4 a -> Vec4 a
+set4X n (Vec v) = Vec (fromJust (insertAt 0 n v))
 
-setY :: forall a. a -> Vec4 a -> Vec4 a
-setY n (Vec v) = Vec (insertAt 1 n v)
+set4Y :: forall a. a -> Vec4 a -> Vec4 a
+set4Y n (Vec v) = Vec (fromJust (insertAt 1 n v))
 
-setZ :: forall a. a -> Vec4 a -> Vec4 a
-setZ n (Vec v) = Vec (insertAt 2 n v)
+set4Z :: forall a. a -> Vec4 a -> Vec4 a
+set4Z n (Vec v) = Vec (fromJust (insertAt 2 n v))
 
-setU :: forall a. a -> Vec4 a -> Vec4 a
-setU n (Vec v) = Vec (insertAt 3 n v)
+set4U :: forall a. a -> Vec4 a -> Vec4 a
+set4U n (Vec v) = Vec (fromJust (insertAt 3 n v))

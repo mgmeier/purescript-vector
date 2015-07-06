@@ -14,34 +14,36 @@
 
 module Data.Vector2 where
 
+import Prelude
 import Data.Vector
 import Data.TypeNat
 import Data.Array
-import Prelude.Unsafe
+import Data.Array.Unsafe (unsafeIndex)
 import Math
+import Data.Maybe.Unsafe (fromJust)
 
 type Vec2 = Vec Two
 
 vec2 :: forall a. a -> a -> Vec2 a
 vec2 x y = Vec [x,y]
 
-vec2' :: forall a. [a] -> Vec2 a
+vec2' :: forall a. Array a -> Vec2 a
 vec2' array | length array == 2 = Vec array
 
-i :: Vec2 Number
-i = Vec [1,0]
+i2 :: Vec2 Number
+i2 = Vec [1.0,0.0]
 
-j :: Vec2 Number
-j = Vec [0,1]
+j2 :: Vec2 Number
+j2 = Vec [0.0,1.0]
 
-getX :: forall a. Vec2 a -> a
-getX (Vec v) = unsafeIndex v 0
+get2X :: forall a. Vec2 a -> a
+get2X (Vec v) = unsafeIndex v 0
 
-getY :: forall a. Vec2 a -> a
-getY (Vec v) = unsafeIndex v 1
+get2Y :: forall a. Vec2 a -> a
+get2Y (Vec v) = unsafeIndex v 1
 
-setX :: forall a. a -> Vec2 a -> Vec2 a
-setX n (Vec v) = Vec (insertAt 0 n v)
+set2X :: forall a. a -> Vec2 a -> Vec2 a
+set2X n (Vec v) = Vec (fromJust (insertAt 0 n v))
 
-setY :: forall a. a -> Vec2 a -> Vec2 a
-setY n (Vec v) = Vec (insertAt 1 n v)
+set2Y :: forall a. a -> Vec2 a -> Vec2 a
+set2Y n (Vec v) = Vec (fromJust (insertAt 1 n v))

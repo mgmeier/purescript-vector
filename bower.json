@@ -21,8 +21,17 @@
     "package.json"
   ],
   "dependencies": {
+    "purescript-prelude" : "*",
+    "purescript-either" : ">=0.2.0",
     "purescript-arrays" : "*",
     "purescript-foldable-traversable": "*",
-    "purescript-math": "*"
+    "purescript-math": "*",
+    "purescript-extensions":"*"
+  },
+  "devDependencies": {
+    "purescript-assert": "*",
+    "purescript-console": "*",
+    "purescript-benchotron" : "git@github.com:hdgarrood/purescript-benchotron.git#master",
+    "purescript-random" : "*"
   }
 }

@@ -14,73 +14,71 @@
 
 module Data.Vector where
 
+import Prelude
 import Data.Array
 import Data.Monoid
 import Data.Foldable
 import Data.TypeNat
 import Control.Apply
-import Prelude.Unsafe
 import Math
+import Extensions (undef)
 
-newtype Vec s a = Vec [a]
+newtype Vec s a = Vec (Array a)
 
-class (Sized v) <= Vector v where
+fill :: forall s a. (Num a, Sized s) => a -> Vec s a
+fill a = Vec (replicate (sized (undef :: s)) a)
 
-instance sv1 :: Sized (Vec One a) where
-  sized v = 1
-instance sv2 :: Sized (Vec Two a) where
-  sized v = 2
-instance sv3 :: Sized (Vec Three a) where
-  sized v = 3
-instance sv4 :: Sized (Vec Four a) where
-  sized v = 4
-
-fromArray :: forall s a. (Vector (Vec s a)) => [a] -> Vec s a
+fromArray :: forall s a. (Sized s) => Array a -> Vec s a
 fromArray l =
   let res = Vec l
-  in case sized res of
+  in case sized (undef :: s) of
         i | i == length l -> res
 
-toArray :: forall s a. Vec s a -> [a]
+toArray :: forall s a. Vec s a -> Array a
 toArray (Vec a) = a
 
 instance eqVec :: (Eq a) => Eq (Vec s a) where
-  (==) (Vec l) (Vec r) = l == r
-  (/=) (Vec l) (Vec r) = l /= r
+  eq (Vec l) (Vec r) = l `eq` r
 
 instance showVec :: (Show a) => Show (Vec s a) where
   show (Vec l) = "Vec " ++ show l
 
 instance functorVec :: Functor (Vec s) where
-  (<$>) f (Vec l) = Vec (f <$> l)
+  map f (Vec l) = Vec (f `map` l)
 
 instance applyVec :: Apply (Vec s) where
-  (<*>) (Vec f) (Vec a) = Vec (zipWith (\f' a' -> f' a') f a)
+  apply (Vec f) (Vec a) = Vec (zipWith (\f' a' -> f' a') f a)
 
 instance foldableVector :: Foldable (Vec s) where
   foldr f z (Vec xs) = foldr f z xs
   foldl f z (Vec xs) = foldl f z xs
   foldMap f xs = foldr (\x acc -> f x <> acc) mempty xs
 
-add :: forall a s. (Num a) => Vec s a -> Vec s a -> Vec s a
-add = lift2 (+)
+vAdd :: forall a s. (Num a) => Vec s a -> Vec s a -> Vec s a
+vAdd = lift2 (+)
 
-sub :: forall a s. (Num a) => Vec s a -> Vec s a -> Vec s a
-sub = lift2 (-)
+vSub :: forall a s. (Num a) => Vec s a -> Vec s a -> Vec s a
+vSub = lift2 (-)
 
-mult :: forall a s. (Num a) => Vec s a -> Vec s a -> Vec s a
-mult = lift2 (*)
+vMul :: forall a s. (Num a) => Vec s a -> Vec s a -> Vec s a
+vMul = lift2 (*)
 
-vnegate :: forall a s. (Num a) => Vec s a -> Vec s a
-vnegate v = negate <$> v
+vNegate :: forall a s. (Num a) => Vec s a -> Vec s a
+vNegate v = negate <$> v
+
+instance semiringVector :: (Sized s) => Semiring (Vec s Number) where
+  add = vAdd
+  zero = fill 0.0
+  mul = vMul
+  one = fill 1.0
 
 -- | The normalized direction from a to b: (a - b) / |a - b|
 direction :: forall s. Vec s Number -> Vec s Number -> Vec s Number
-direction v1 v2 = normalize (sub v1 v2)
+direction v1 v2 = normalize (vSub v1 v2)
 
 -- | The length of the given vector: |a|
 vlengthSquared :: forall s. Vec s Number -> Number
-vlengthSquared v = foldl (+) 0 ((\e -> e * e) <$> v)
+vlengthSquared v = foldl (+) 0.0 ((\e -> e * e) <$> v)
 
 -- | The length of the given vector: |a|
 vlength :: forall s. Vec s Number -> Number
@@ -95,7 +93,7 @@ normalize v =
 
 -- | The distance between two vectors.
 distanceSquared :: forall s. Vec s Number -> Vec s Number -> Number
-distanceSquared v1 v2 = foldl (+) 0 ((\e -> e * e) <$> (sub v1 v2))
+distanceSquared v1 v2 = foldl (+) 0.0 ((\e -> e * e) <$> (vSub v1 v2))
 
 -- | The distance between two vectors.
 distance :: forall s. Vec s Number -> Vec s Number -> Number
@@ -107,4 +105,4 @@ scale s v = (\e -> e * s) <$> v
 
 -- | The dot product of a and b
 dot :: forall s . Vec s Number -> Vec s Number -> Number
-dot v1 v2 = foldl (+) 0 (mult v1 v2)
+dot v1 v2 = foldl (+) 0.0 (vMul v1 v2)

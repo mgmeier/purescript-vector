@@ -2,6 +2,7 @@
 
 ## Module Data.TypeNat
 
+
 #### `Zero`
 
 ``` purescript
@@ -57,6 +58,7 @@ class Sized a where
 
 
 ## Module Data.Vector
+
 
 #### `Vec`
 
@@ -243,6 +245,7 @@ The dot product of a and b
 
 ## Module Data.Vector2
 
+
 #### `Vec2`
 
 ``` purescript
@@ -308,6 +311,7 @@ setY :: forall a. a -> Vec2 a -> Vec2 a
 
 
 ## Module Data.Vector3
+
 
 #### `Vec3`
 
@@ -403,6 +407,7 @@ The cross product of a and b
 
 
 ## Module Data.Vector4
+
 
 #### `Vec4`
 

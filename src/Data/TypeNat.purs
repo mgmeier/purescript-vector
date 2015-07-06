@@ -12,14 +12,21 @@
 
 module Data.TypeNat where
 
--- * TypeLevelNat as phantom types
+import Prelude
+import Extensions (undef)
+
 data Zero
 data Suc a
 
-newtype One   = One (Suc Zero)
-newtype Two   = Two (Suc (Suc Zero))
-newtype Three = Three (Suc (Suc (Suc Zero)))
-newtype Four  = Four (Suc (Suc (Suc (Suc Zero))))
+type One   = Suc Zero
+type Two   = Suc (Suc Zero)
+type Three = Suc (Suc (Suc Zero))
+type Four  = Suc (Suc (Suc (Suc Zero)))
 
 class Sized a where
-  sized :: a -> Number
+  sized :: a -> Int
+
+instance sz :: Sized Zero where
+  sized _ = 0
+instance ss :: (Sized a) => Sized (Suc a) where
+  sized _ = 1 + sized (undef :: a) 
