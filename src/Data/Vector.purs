@@ -21,17 +21,17 @@ import Data.Foldable
 import Data.TypeNat
 import Control.Apply
 import Math
-import Extensions (undef)
+import Data.Generic (anyProxy, Proxy())
 
 newtype Vec s a = Vec (Array a)
 
 fill :: forall s a. (Num a, Sized s) => a -> Vec s a
-fill a = Vec (replicate (sized (undef :: s)) a)
+fill a = Vec (replicate (sized (anyProxy :: Proxy s)) a)
 
 fromArray :: forall s a. (Sized s) => Array a -> Vec s a
 fromArray l =
   let res = Vec l
-  in case sized (undef :: s) of
+  in case sized (anyProxy :: Proxy s) of
         i | i == length l -> res
 
 toArray :: forall s a. Vec s a -> Array a

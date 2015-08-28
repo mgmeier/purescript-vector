@@ -50,7 +50,7 @@ type Four = Suc (Suc (Suc (Suc Zero)))
 
 ``` purescript
 class Sized a where
-  sized :: a -> Int
+  sized :: Proxy a -> Int
 ```
 
 ##### Instances

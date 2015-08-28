@@ -13,7 +13,7 @@
 module Data.TypeNat where
 
 import Prelude
-import Extensions (undef)
+import Data.Generic (anyProxy, Proxy())
 
 data Zero
 data Suc a
@@ -24,9 +24,9 @@ type Three = Suc (Suc (Suc Zero))
 type Four  = Suc (Suc (Suc (Suc Zero)))
 
 class Sized a where
-  sized :: a -> Int
+  sized :: Proxy a -> Int
 
 instance sz :: Sized Zero where
   sized _ = 0
 instance ss :: (Sized a) => Sized (Suc a) where
-  sized _ = 1 + sized (undef :: a) 
+  sized _ = 1 + sized (anyProxy :: Proxy a)
