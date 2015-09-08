@@ -8,6 +8,10 @@
   "keywords": [
     "purescript"
   ],
+   "repository": {
+      "type": "git",
+      "url": "git@github.com:jutaro/purescript-vector.git"            
+    }
   "license": "Apache-2.0",
   "ignore": [
     "**/.*",
