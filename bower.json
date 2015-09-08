@@ -2,7 +2,7 @@
   "name": "purescript-vector",
   "homepage": "https://github.com/jutaro/purescript-vector",
   "authors": [
-    "Jürgen Nicklisch-Franken <jnf@arcor.de>"
+    "Juergen Nicklisch-Franken <jnf@arcor.de>"
   ],
   "description": "Vectors for purescript",
   "keywords": [
