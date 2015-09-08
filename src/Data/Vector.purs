@@ -22,6 +22,7 @@ import Data.TypeNat
 import Control.Apply
 import Math
 import Data.Generic (anyProxy, Proxy())
+import Extensions (fail)
 
 newtype Vec s a = Vec (Array a)
 
@@ -33,6 +34,7 @@ fromArray l =
   let res = Vec l
   in case sized (anyProxy :: Proxy s) of
         i | i == length l -> res
+          | otherwise     -> fail "Vector>>fromArray: wrong array length!"
 
 toArray :: forall s a. Vec s a -> Array a
 toArray (Vec a) = a

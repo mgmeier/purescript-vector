@@ -21,6 +21,7 @@ import Data.Array
 import Data.Array.Unsafe (unsafeIndex)
 import Math
 import Data.Maybe.Unsafe (fromJust)
+import Extensions (fail)
 
 type Vec2 = Vec Two
 
@@ -29,6 +30,7 @@ vec2 x y = Vec [x,y]
 
 vec2' :: forall a. Array a -> Vec2 a
 vec2' array | length array == 2 = Vec array
+            | otherwise         = fail "Vector2>>vec2': wrong array length!"
 
 i2 :: Vec2 Number
 i2 = Vec [1.0,0.0]

@@ -20,6 +20,7 @@ import Data.TypeNat
 import Data.Array
 import Data.Array.Unsafe (unsafeIndex)
 import Data.Maybe.Unsafe (fromJust)
+import Extensions (fail)
 
 import Math
 
@@ -30,6 +31,7 @@ vec3 x y z = Vec [x,y,z]
 
 vec3' :: forall a. Array a -> Vec3 a
 vec3' array | length array == 3 = Vec array
+            | otherwise         = fail "Vector3>>vec3': wrong array length!"
 
 i3 :: Vec3 Number
 i3 = Vec [1.0,0.0,0.0]
@@ -59,3 +61,4 @@ set3Z n (Vec v) = Vec (fromJust (insertAt 2 n v))
 -- | The cross product of a and b
 cross :: forall a. (Num a) => Vec3 a -> Vec3 a -> Vec3 a
 cross (Vec [x1,y1,z1]) (Vec [x2,y2,z2]) = Vec [y1*z2 - z1*y2, z1*x2 - x1*z2, x1*y2 - y1*x2]
+cross _ _ = fail "Vector3>>cross: impossible!"

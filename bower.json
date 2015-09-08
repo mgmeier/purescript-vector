@@ -26,12 +26,13 @@
     "purescript-arrays" : "*",
     "purescript-foldable-traversable": "*",
     "purescript-math": "*",
-    "purescript-generics":"^0.5.1"
+    "purescript-generics":"^0.5.1",
+    "purescript-extensions" : "*"
   },
   "devDependencies": {
     "purescript-assert": "*",
     "purescript-console": "*",
-    "purescript-benchotron" : "*",
+    "purescript-benchotron" : "^2.1",
     "purescript-random" : "*"
   }
 }
