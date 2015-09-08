@@ -26,7 +26,7 @@
     "purescript-arrays" : "*",
     "purescript-foldable-traversable": "*",
     "purescript-math": "*",
-    "purescript-extensions":"*"
+    "purescript-generics":"^0.5.1"
   },
   "devDependencies": {
     "purescript-assert": "*",
