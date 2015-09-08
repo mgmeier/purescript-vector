@@ -13,13 +13,9 @@ import qualified Data.Vector4 as V
 ## Module documentation
 
 - [Data.Vector](docs/Data/Vector.md)
-
 - [Data.Vector2](docs/Data/Vector2.md)
-
 - [Data.Vector3](docs/Data/Vector3.md)
-
 - [Data.Vector4](docs/Data/Vector4.md)
-
 - [Data.TypeNat](docs/Data/TypeNat.md)
 
 ## Build with:
