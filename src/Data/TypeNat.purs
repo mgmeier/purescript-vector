@@ -16,17 +16,22 @@ import Prelude
 import Data.Generic (anyProxy, Proxy())
 
 data Zero
-data Suc a
-
-type One   = Suc Zero
-type Two   = Suc (Suc Zero)
-type Three = Suc (Suc (Suc Zero))
-type Four  = Suc (Suc (Suc (Suc Zero)))
+data One
+data Two
+data Three
+data Four
 
 class Sized a where
   sized :: Proxy a -> Int
 
 instance sz :: Sized Zero where
   sized _ = 0
-instance ss :: (Sized a) => Sized (Suc a) where
-  sized _ = 1 + sized (anyProxy :: Proxy a)
+instance s1 :: Sized One where
+  sized _ = 1
+instance s2 :: Sized Two where
+  sized _ = 2
+instance s3 :: Sized Three where
+  sized _ = 3
+instance s4 :: Sized Four where
+  sized _ = 4
+  

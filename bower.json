@@ -26,17 +26,17 @@
   ],
   "dependencies": {
     "purescript-prelude" : "*",
-    "purescript-either" : ">=0.2.0",
+    "purescript-either" : "*",
     "purescript-arrays" : "*",
     "purescript-foldable-traversable": "*",
     "purescript-math": "*",
-    "purescript-generics":"^0.5.1",
+    "purescript-generics":"*",
     "purescript-extensions" : "*"
   },
   "devDependencies": {
     "purescript-assert": "*",
     "purescript-console": "*",
-    "purescript-benchotron" : "^2.1",
+    "purescript-benchotron" : "*",
     "purescript-random" : "*"
   }
 }
