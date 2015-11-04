@@ -11,39 +11,48 @@ data Zero
 instance sz :: Sized Zero
 ```
 
-#### `Suc`
+#### `One`
 
 ``` purescript
-data Suc a
+data One
 ```
 
 ##### Instances
 ``` purescript
-instance ss :: (Sized a) => Sized (Suc a)
-```
-
-#### `One`
-
-``` purescript
-type One = Suc Zero
+instance s1 :: Sized One
 ```
 
 #### `Two`
 
 ``` purescript
-type Two = Suc (Suc Zero)
+data Two
+```
+
+##### Instances
+``` purescript
+instance s2 :: Sized Two
 ```
 
 #### `Three`
 
 ``` purescript
-type Three = Suc (Suc (Suc Zero))
+data Three
+```
+
+##### Instances
+``` purescript
+instance s3 :: Sized Three
 ```
 
 #### `Four`
 
 ``` purescript
-type Four = Suc (Suc (Suc (Suc Zero)))
+data Four
+```
+
+##### Instances
+``` purescript
+instance s4 :: Sized Four
 ```
 
 #### `Sized`
@@ -56,7 +65,10 @@ class Sized a where
 ##### Instances
 ``` purescript
 instance sz :: Sized Zero
-instance ss :: (Sized a) => Sized (Suc a)
+instance s1 :: Sized One
+instance s2 :: Sized Two
+instance s3 :: Sized Three
+instance s4 :: Sized Four
 ```
 
 
