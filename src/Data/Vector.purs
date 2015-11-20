@@ -21,18 +21,18 @@ import Data.Foldable
 import Data.TypeNat
 import Control.Apply
 import Math
-import Data.Generic (anyProxy, Proxy())
+import Type.Proxy
 import Extensions (fail)
 
 newtype Vec s a = Vec (Array a)
 
 fill :: forall s a. (Num a, Sized s) => a -> Vec s a
-fill a = Vec (replicate (sized (anyProxy :: Proxy s)) a)
+fill a = Vec (replicate (sized (Proxy :: Proxy s)) a)
 
 fromArray :: forall s a. (Sized s) => Array a -> Vec s a
 fromArray l =
   let res = Vec l
-  in case sized (anyProxy :: Proxy s) of
+  in case sized (Proxy :: Proxy s) of
         i | i == length l -> res
           | otherwise     -> fail "Vector>>fromArray: wrong array length!"
 
