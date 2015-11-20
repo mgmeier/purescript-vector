@@ -30,7 +30,7 @@
     "purescript-arrays" : "*",
     "purescript-foldable-traversable": "*",
     "purescript-math": "*",
-    "purescript-generics":"*",
+    "purescript-proxy": "*",
     "purescript-extensions" : "*"
   },
   "devDependencies": {
