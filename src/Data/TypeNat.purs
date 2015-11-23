@@ -13,7 +13,7 @@
 module Data.TypeNat where
 
 import Prelude
-import Data.Generic (anyProxy, Proxy())
+import Type.Proxy (Proxy(..))
 
 data Zero
 data One
