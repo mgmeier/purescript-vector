@@ -20,7 +20,6 @@ import Data.TypeNat
 import Data.Array
 import Data.Array.Unsafe (unsafeIndex)
 import Data.Maybe.Unsafe (fromJust)
-import Math
 import Extensions (fail)
 
 type Vec4 = Vec Four

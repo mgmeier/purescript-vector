@@ -13,7 +13,7 @@
 module Data.TypeNat where
 
 import Prelude
-import Type.Proxy (Proxy(..))
+import Type.Proxy (Proxy())
 
 data Zero
 data One
@@ -34,4 +34,3 @@ instance s3 :: Sized Three where
   sized _ = 3
 instance s4 :: Sized Four where
   sized _ = 4
-  

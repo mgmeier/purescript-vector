@@ -19,7 +19,6 @@ import Data.Vector
 import Data.TypeNat
 import Data.Array
 import Data.Array.Unsafe (unsafeIndex)
-import Math
 import Data.Maybe.Unsafe (fromJust)
 import Extensions (fail)
 

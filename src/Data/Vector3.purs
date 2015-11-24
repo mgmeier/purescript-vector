@@ -22,7 +22,6 @@ import Data.Array.Unsafe (unsafeIndex)
 import Data.Maybe.Unsafe (fromJust)
 import Extensions (fail)
 
-import Math
 
 type Vec3 = Vec Three
 
