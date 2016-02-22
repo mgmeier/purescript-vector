@@ -1,5 +1,7 @@
 ## Module Data.Vector3
 
+Binding to mjs library
+
 #### `Vec3`
 
 ``` purescript

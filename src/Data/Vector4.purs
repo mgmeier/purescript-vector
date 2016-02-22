@@ -8,16 +8,15 @@
 -- Stability   :
 -- Portability :
 --
--- | Binding to mjs library
 --
 -----------------------------------------------------------------------------
 
 module Data.Vector4 where
 
-import Prelude
-import Data.Vector
-import Data.TypeNat
-import Data.Array
+import Prelude (otherwise, (==))
+import Data.Vector (Vec(Vec))
+import Data.TypeNat (Four)
+import Data.Array (insertAt, length)
 import Data.Array.Unsafe (unsafeIndex)
 import Data.Maybe.Unsafe (fromJust)
 import Extensions (fail)

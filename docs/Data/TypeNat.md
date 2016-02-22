@@ -1,5 +1,7 @@
 ## Module Data.TypeNat
 
+Simple type level naturals for vector and matrix sizes
+
 #### `Zero`
 
 ``` purescript
@@ -8,7 +10,7 @@ data Zero
 
 ##### Instances
 ``` purescript
-instance sz :: Sized Zero
+Sized Zero
 ```
 
 #### `One`
@@ -19,7 +21,7 @@ data One
 
 ##### Instances
 ``` purescript
-instance s1 :: Sized One
+Sized One
 ```
 
 #### `Two`
@@ -30,7 +32,7 @@ data Two
 
 ##### Instances
 ``` purescript
-instance s2 :: Sized Two
+Sized Two
 ```
 
 #### `Three`
@@ -41,7 +43,7 @@ data Three
 
 ##### Instances
 ``` purescript
-instance s3 :: Sized Three
+Sized Three
 ```
 
 #### `Four`
@@ -52,7 +54,7 @@ data Four
 
 ##### Instances
 ``` purescript
-instance s4 :: Sized Four
+Sized Four
 ```
 
 #### `Sized`
@@ -64,11 +66,11 @@ class Sized a where
 
 ##### Instances
 ``` purescript
-instance sz :: Sized Zero
-instance s1 :: Sized One
-instance s2 :: Sized Two
-instance s3 :: Sized Three
-instance s4 :: Sized Four
+Sized Zero
+Sized One
+Sized Two
+Sized Three
+Sized Four
 ```
 
 

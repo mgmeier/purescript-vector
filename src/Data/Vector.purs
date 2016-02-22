@@ -8,19 +8,18 @@
 -- Stability   :
 -- Portability :
 --
--- | Binding to mjs library
 --
 -----------------------------------------------------------------------------
 
 module Data.Vector where
 
-import Prelude
-import Data.Array
-import Data.Monoid
-import Data.Foldable
-import Data.TypeNat
-import Control.Apply
-import Math
+import Prelude (class Num, class Semiring, class Apply, class Functor, class Show, class Eq, (+), (*), (<$>), (/), (<<<), negate, (-), (<>), map, show, (++), eq, otherwise, (==))
+import Data.Array (zipWith, length, replicate)
+import Data.Monoid (mempty)
+import Data.Foldable (class Foldable, foldl, foldr)
+import Data.TypeNat (class Sized, sized)
+import Control.Apply (lift2)
+import Math (sqrt)
 import Type.Proxy (Proxy(..))
 import Extensions (fail)
 

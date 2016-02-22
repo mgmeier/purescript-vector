@@ -1,5 +1,7 @@
 ## Module Data.Vector
 
+Binding to mjs library
+
 #### `Vec`
 
 ``` purescript
@@ -9,12 +11,12 @@ newtype Vec s a
 
 ##### Instances
 ``` purescript
-instance eqVec :: (Eq a) => Eq (Vec s a)
-instance showVec :: (Show a) => Show (Vec s a)
-instance functorVec :: Functor (Vec s)
-instance applyVec :: Apply (Vec s)
-instance foldableVector :: Foldable (Vec s)
-instance semiringVector :: (Sized s) => Semiring (Vec s Number)
+(Eq a) => Eq (Vec s a)
+(Show a) => Show (Vec s a)
+Functor (Vec s)
+Apply (Vec s)
+Foldable (Vec s)
+(Sized s) => Semiring (Vec s Number)
 ```
 
 #### `fill`
@@ -88,6 +90,8 @@ The length of the given vector: |a|
 ``` purescript
 normalize :: forall s. Vec s Number -> Vec s Number
 ```
+
+A unit vector with the same direction as the given vector: a / |a|
 
 #### `distanceSquared`
 

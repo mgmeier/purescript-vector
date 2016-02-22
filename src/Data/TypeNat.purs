@@ -12,7 +12,6 @@
 
 module Data.TypeNat where
 
-import Prelude
 import Type.Proxy (Proxy())
 
 data Zero
