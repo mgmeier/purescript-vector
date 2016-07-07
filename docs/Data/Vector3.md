@@ -1,7 +1,5 @@
 ## Module Data.Vector3
 
-Binding to mjs library
-
 #### `Vec3`
 
 ``` purescript
@@ -77,7 +75,7 @@ set3Z :: forall a. a -> Vec3 a -> Vec3 a
 #### `cross`
 
 ``` purescript
-cross :: forall a. (Num a) => Vec3 a -> Vec3 a -> Vec3 a
+cross :: forall a. EuclideanRing a => Vec3 a -> Vec3 a -> Vec3 a
 ```
 
 The cross product of a and b

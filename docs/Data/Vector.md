@@ -1,7 +1,5 @@
 ## Module Data.Vector
 
-Binding to mjs library
-
 #### `Vec`
 
 ``` purescript
@@ -22,13 +20,13 @@ Foldable (Vec s)
 #### `fill`
 
 ``` purescript
-fill :: forall s a. (Num a, Sized s) => a -> Vec s a
+fill :: forall s a. (EuclideanRing a, Sized s) => a -> Vec s a
 ```
 
 #### `fromArray`
 
 ``` purescript
-fromArray :: forall s a. (Sized s) => Array a -> Vec s a
+fromArray :: forall s a. Sized s => Array a -> Vec s a
 ```
 
 #### `toArray`
@@ -40,25 +38,25 @@ toArray :: forall s a. Vec s a -> Array a
 #### `vAdd`
 
 ``` purescript
-vAdd :: forall a s. (Num a) => Vec s a -> Vec s a -> Vec s a
+vAdd :: forall a s. EuclideanRing a => Vec s a -> Vec s a -> Vec s a
 ```
 
 #### `vSub`
 
 ``` purescript
-vSub :: forall a s. (Num a) => Vec s a -> Vec s a -> Vec s a
+vSub :: forall a s. EuclideanRing a => Vec s a -> Vec s a -> Vec s a
 ```
 
 #### `vMul`
 
 ``` purescript
-vMul :: forall a s. (Num a) => Vec s a -> Vec s a -> Vec s a
+vMul :: forall a s. EuclideanRing a => Vec s a -> Vec s a -> Vec s a
 ```
 
 #### `vNegate`
 
 ``` purescript
-vNegate :: forall a s. (Num a) => Vec s a -> Vec s a
+vNegate :: forall a s. EuclideanRing a => Vec s a -> Vec s a
 ```
 
 #### `direction`
@@ -112,7 +110,7 @@ The distance between two vectors.
 #### `scale`
 
 ``` purescript
-scale :: forall a s. (Num a) => a -> Vec s a -> Vec s a
+scale :: forall a s. EuclideanRing a => a -> Vec s a -> Vec s a
 ```
 
 Multiply the vector by a scalar: s * v
