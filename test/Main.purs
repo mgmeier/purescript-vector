@@ -1,21 +1,26 @@
 module Test.Main where
 
 import Prelude
-import Control.Monad.Eff.Console (log)
-import Test.Assert (assert)
-import Data.Array.Unsafe (unsafeIndex)
-import qualified Data.TypeNat as TN
-import qualified Data.Vector as V
-import qualified Data.Vector2 as V
-import qualified Data.Vector3 as V
-import qualified Data.Vector4 as V
+import Control.Monad.Eff (Eff)
+import Control.Monad.Eff.Console (CONSOLE, log)
+import Test.Assert (ASSERT, assert)
+import Data.Array.Partial (unsafeIndex)
+import Data.Vector (fromArray, toArray) as V
+import Data.Vector2 (Vec2, vec2, vec2') as V
+import Data.Vector3 (Vec3, vec3, vec3') as V
+import Data.Vector4 (Vec4, vec4, vec4') as V
 
+main ::  forall eff. Partial => Eff (console :: CONSOLE, assert :: ASSERT | eff) Unit
 main = testVector
 
+a2 :: Array Number
 a2 = [1.0,2.0]
+a3 :: Array Number
 a3 = [1.0,2.0,3.0]
+a4 :: Array Number
 a4 = [1.0,2.0,3.0,4.0]
 
+testVector ::  forall eff. Partial => Eff (console :: CONSOLE, assert :: ASSERT | eff) Unit
 testVector = do
 
   log "toArray after fromArray results in equality"
@@ -51,11 +56,11 @@ testVector = do
                                                         (unsafeIndex a4 3 * unsafeIndex a4 3)
 
   log "Zero "
-  assert $ V.fromArray a2 + zero :: V.Vec2 Number == V.fromArray a2
-  assert $ V.fromArray a3 + zero :: V.Vec3 Number == V.fromArray a3
-  assert $ V.fromArray a4 + zero :: V.Vec4 Number == V.fromArray a4
+  assert $ V.fromArray a2 + (zero :: V.Vec2 Number) == V.fromArray a2
+  assert $ V.fromArray a3 + (zero :: V.Vec3 Number) == V.fromArray a3
+  assert $ V.fromArray a4 + (zero :: V.Vec4 Number) == V.fromArray a4
 
   log "One "
-  assert $ V.fromArray a2 * one :: V.Vec2 Number == V.fromArray a2
-  assert $ V.fromArray a3 * one :: V.Vec3 Number == V.fromArray a3
-  assert $ V.fromArray a4 * one :: V.Vec4 Number == V.fromArray a4
+  assert $ V.fromArray a2 * (one :: V.Vec2 Number) == V.fromArray a2
+  assert $ V.fromArray a3 * (one :: V.Vec3 Number) == V.fromArray a3
+  assert $ V.fromArray a4 * (one :: V.Vec4 Number) == V.fromArray a4
