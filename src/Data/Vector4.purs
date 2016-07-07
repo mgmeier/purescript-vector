@@ -13,13 +13,14 @@
 
 module Data.Vector4 where
 
-import Prelude (otherwise, (==))
+import Prelude
 import Data.Vector (Vec(Vec))
 import Data.TypeNat (Four)
 import Data.Array (insertAt, length)
-import Data.Array.Unsafe (unsafeIndex)
-import Data.Maybe.Unsafe (fromJust)
+import Data.Array.Partial (unsafeIndex)
+import Data.Maybe (fromJust)
 import Extensions (fail)
+import Partial.Unsafe (unsafePartial)
 
 type Vec4 = Vec Four
 
@@ -40,25 +41,25 @@ l4 :: Vec4 Number
 l4 = Vec [0.0,0.0,0.0,1.0]
 
 get4X :: forall a. Vec4 a -> a
-get4X (Vec v) = unsafeIndex v 0
+get4X (Vec v) = unsafePartial $ unsafeIndex v 0
 
 get4Y :: forall a. Vec4 a -> a
-get4Y (Vec v) = unsafeIndex v 1
+get4Y (Vec v) = unsafePartial $ unsafeIndex v 1
 
 get4Z :: forall a. Vec4 a -> a
-get4Z (Vec v) = unsafeIndex v 2
+get4Z (Vec v) = unsafePartial $ unsafeIndex v 2
 
 get4U :: forall a. Vec4 a -> a
-get4U (Vec v) = unsafeIndex v 3
+get4U (Vec v) = unsafePartial $ unsafeIndex v 3
 
 set4X :: forall a. a -> Vec4 a -> Vec4 a
-set4X n (Vec v) = Vec (fromJust (insertAt 0 n v))
+set4X n (Vec v) = Vec (unsafePartial $ fromJust (insertAt 0 n v))
 
 set4Y :: forall a. a -> Vec4 a -> Vec4 a
-set4Y n (Vec v) = Vec (fromJust (insertAt 1 n v))
+set4Y n (Vec v) = Vec (unsafePartial $ fromJust (insertAt 1 n v))
 
 set4Z :: forall a. a -> Vec4 a -> Vec4 a
-set4Z n (Vec v) = Vec (fromJust (insertAt 2 n v))
+set4Z n (Vec v) = Vec (unsafePartial $ fromJust (insertAt 2 n v))
 
 set4U :: forall a. a -> Vec4 a -> Vec4 a
-set4U n (Vec v) = Vec (fromJust (insertAt 3 n v))
+set4U n (Vec v) = Vec (unsafePartial $ fromJust (insertAt 3 n v))

@@ -13,13 +13,14 @@
 
 module Data.Vector2 where
 
-import Prelude (otherwise, (==))
+import Prelude
 import Data.Vector (Vec(Vec))
 import Data.TypeNat (Two)
 import Data.Array (insertAt, length)
-import Data.Array.Unsafe (unsafeIndex)
-import Data.Maybe.Unsafe (fromJust)
+import Data.Array.Partial (unsafeIndex)
+import Data.Maybe(fromJust)
 import Extensions (fail)
+import Partial.Unsafe (unsafePartial)
 
 type Vec2 = Vec Two
 
@@ -37,13 +38,13 @@ j2 :: Vec2 Number
 j2 = Vec [0.0,1.0]
 
 get2X :: forall a. Vec2 a -> a
-get2X (Vec v) = unsafeIndex v 0
+get2X (Vec v) = unsafePartial $ unsafeIndex v 0
 
 get2Y :: forall a. Vec2 a -> a
-get2Y (Vec v) = unsafeIndex v 1
+get2Y (Vec v) = unsafePartial $ unsafeIndex v 1
 
 set2X :: forall a. a -> Vec2 a -> Vec2 a
-set2X n (Vec v) = Vec (fromJust (insertAt 0 n v))
+set2X n (Vec v) = Vec (unsafePartial $ fromJust (insertAt 0 n v))
 
 set2Y :: forall a. a -> Vec2 a -> Vec2 a
-set2Y n (Vec v) = Vec (fromJust (insertAt 1 n v))
+set2Y n (Vec v) = Vec (unsafePartial $ fromJust (insertAt 1 n v))

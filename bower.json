@@ -8,9 +8,9 @@
   "keywords": [
     "purescript"
   ],
-   "repository": {
-      "type": "git",
-      "url": "git://github.com/jutaro/purescript-vector.git"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jutaro/purescript-vector.git"
   },
   "license": "Apache-2.0",
   "ignore": [
@@ -25,18 +25,18 @@
     "package.json"
   ],
   "dependencies": {
-    "purescript-prelude" : "*",
-    "purescript-either" : "*",
-    "purescript-arrays" : "*",
-    "purescript-foldable-traversable": "*",
-    "purescript-math": "*",
-    "purescript-extensions" : "*",
-    "purescript-proxy" : "*"
+    "purescript-prelude": "^1.0.1",
+    "purescript-either": "^1.0.0",
+    "purescript-arrays": "^1.0.0",
+    "purescript-foldable-traversable": "^1.0.0",
+    "purescript-math": "^2.0.0",
+    "purescript-extensions": "^1.0.0",
+    "purescript-proxy": "^1.0.0"
   },
   "devDependencies": {
-    "purescript-assert": "*",
-    "purescript-console": "*",
-    "purescript-benchotron" : "*",
-    "purescript-random" : "*"
+    "purescript-assert": "^1.0.0",
+    "purescript-console": "^1.0.0",
+    "purescript-benchotron": "^4.0.0",
+    "purescript-random": "^1.0.0"
   }
 }

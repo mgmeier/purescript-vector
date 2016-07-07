@@ -13,13 +13,14 @@
 
 module Data.Vector3 where
 
-import Prelude (class Num, (*), (-), otherwise, (==))
+import Prelude
 import Data.Vector (Vec(Vec))
 import Data.TypeNat (Three)
 import Data.Array (insertAt, length)
-import Data.Array.Unsafe (unsafeIndex)
-import Data.Maybe.Unsafe (fromJust)
+import Data.Array.Partial (unsafeIndex)
+import Data.Maybe (fromJust)
 import Extensions (fail)
+import Partial.Unsafe (unsafePartial)
 
 
 type Vec3 = Vec Three
@@ -39,24 +40,24 @@ k3 :: Vec3 Number
 k3 = Vec [0.0,0.0,1.0]
 
 get3X :: forall a. Vec3 a -> a
-get3X (Vec v) = unsafeIndex v 0
+get3X (Vec v) = unsafePartial $ unsafeIndex v 0
 
 get3Y :: forall a. Vec3 a -> a
-get3Y (Vec v) = unsafeIndex v 1
+get3Y (Vec v) = unsafePartial $ unsafeIndex v 1
 
 get3Z :: forall a. Vec3 a -> a
-get3Z (Vec v) = unsafeIndex v 2
+get3Z (Vec v) = unsafePartial $ unsafeIndex v 2
 
 set3X :: forall a. a -> Vec3 a -> Vec3 a
-set3X n (Vec v) = Vec (fromJust (insertAt 0 n v))
+set3X n (Vec v) = Vec (unsafePartial $ fromJust (insertAt 0 n v))
 
 set3Y :: forall a. a -> Vec3 a -> Vec3 a
-set3Y n (Vec v) = Vec (fromJust (insertAt 1 n v))
+set3Y n (Vec v) = Vec (unsafePartial $ fromJust (insertAt 1 n v))
 
 set3Z :: forall a. a -> Vec3 a -> Vec3 a
-set3Z n (Vec v) = Vec (fromJust (insertAt 2 n v))
+set3Z n (Vec v) = Vec (unsafePartial $ fromJust (insertAt 2 n v))
 
 -- | The cross product of a and b
-cross :: forall a. (Num a) => Vec3 a -> Vec3 a -> Vec3 a
+cross :: forall a. (EuclideanRing a) => Vec3 a -> Vec3 a -> Vec3 a
 cross (Vec [x1,y1,z1]) (Vec [x2,y2,z2]) = Vec [y1*z2 - z1*y2, z1*x2 - x1*z2, x1*y2 - y1*x2]
 cross _ _ = fail "Vector3>>cross: impossible!"
