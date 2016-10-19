@@ -4,7 +4,7 @@ import Prelude
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Console (CONSOLE, log)
 import Test.Assert (ASSERT, assert)
-import Data.Array.Partial (unsafeIndex)
+import Data.Array (unsafeIndex)
 import Data.Vector (fromArray, toArray) as V
 import Data.Vector2 (Vec2, vec2, vec2') as V
 import Data.Vector3 (Vec3, vec3, vec3') as V
