@@ -25,10 +25,10 @@ import Extensions (fail, replicate)
 
 newtype Vec s a = Vec (Array a)
 
-fill :: forall s a. (EuclideanRing a, Sized s) => a -> Vec s a
+fill :: forall s a. EuclideanRing a => Sized s => a -> Vec s a
 fill a = Vec (replicate (sized (Proxy :: Proxy s)) a)
 
-fromArray :: forall s a. (Sized s) => Array a -> Vec s a
+fromArray :: forall s a. Sized s => Array a -> Vec s a
 fromArray l =
   let res = Vec l
   in case sized (Proxy :: Proxy s) of
