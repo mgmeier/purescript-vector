@@ -18,8 +18,7 @@ import Data.Vector (Vec(Vec))
 import Data.TypeNat (Two)
 import Data.Array (insertAt, length, unsafeIndex)
 import Data.Maybe(fromJust)
-import Extensions (fail)
-import Partial.Unsafe (unsafePartial)
+import Partial.Unsafe (unsafePartial, unsafeCrashWith)
 
 type Vec2 = Vec Two
 
@@ -28,7 +27,7 @@ vec2 x y = Vec [x,y]
 
 vec2' :: forall a. Array a -> Vec2 a
 vec2' array | length array == 2 = Vec array
-            | otherwise         = fail "Vector2>>vec2': wrong array length!"
+            | otherwise         = unsafeCrashWith "Vector2>>vec2': wrong array length!"
 
 i2 :: Vec2 Number
 i2 = Vec [1.0,0.0]

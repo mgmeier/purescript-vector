@@ -18,8 +18,7 @@ import Data.Vector (Vec(Vec))
 import Data.TypeNat (Four)
 import Data.Array (insertAt, length, unsafeIndex)
 import Data.Maybe (fromJust)
-import Extensions (fail)
-import Partial.Unsafe (unsafePartial)
+import Partial.Unsafe (unsafePartial, unsafeCrashWith)
 
 type Vec4 = Vec Four
 
@@ -28,7 +27,7 @@ vec4 x y z u = Vec [x,y,z,u]
 
 vec4' :: forall a. Array a -> Vec4 a
 vec4' array | length array == 4 = Vec array
-            | otherwise         = fail "Vector4>>vec4': wrong array length!"
+            | otherwise         = unsafeCrashWith "Vector4>>vec4': wrong array length!"
 
 i4 :: Vec4 Number
 i4 = Vec [1.0,0.0,0.0,0.0]
