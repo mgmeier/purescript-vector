@@ -9,7 +9,6 @@ import qualified Data.Vector3 as V
 import qualified Data.Vector as V
 import Benchotron.Core
 import Benchotron.UI.Console
-import Extensions (mapM)
 
 vecSum :: forall e. Benchmark (random :: RANDOM | e)
 vecSum = mkBenchmark
@@ -43,6 +42,6 @@ randomVec3 = do
     return (V.vec3' [x,y,z])
 
 randomArray :: forall e a. Eff (random :: RANDOM | e) a -> Int -> Eff (random :: RANDOM | e) (Array a)
-randomArray generator size = mapM (\ _ -> generator) (0..(size-1))
+randomArray generator size = sequence $ map (\ _ -> generator) (0..(size-1))
 
 main = runSuite [vecSum, vecSumPrim]

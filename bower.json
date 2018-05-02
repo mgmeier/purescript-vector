@@ -30,7 +30,6 @@
     "purescript-arrays": "^4.2.0",
     "purescript-foldable-traversable": "^3.6.1",
     "purescript-math": "^2.1.0",
-    "purescript-extensions": "^2.2.0",
     "purescript-proxy": "^2.1.0"
   },
   "devDependencies": {
@@ -39,6 +38,5 @@
     "purescript-random": "^3.0.0"
   },
   "resolutions": {
-    "purescript-extensions": "^2.2.0"
   }
 }

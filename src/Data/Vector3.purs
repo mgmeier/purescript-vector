@@ -18,8 +18,7 @@ import Data.Vector (Vec(Vec))
 import Data.TypeNat (Three)
 import Data.Array (insertAt, length, unsafeIndex)
 import Data.Maybe (fromJust)
-import Extensions (fail)
-import Partial.Unsafe (unsafePartial)
+import Partial.Unsafe (unsafePartial, unsafeCrashWith)
 
 
 type Vec3 = Vec Three
@@ -29,7 +28,7 @@ vec3 x y z = Vec [x,y,z]
 
 vec3' :: forall a. Array a -> Vec3 a
 vec3' array | length array == 3 = Vec array
-            | otherwise         = fail "Vector3>>vec3': wrong array length!"
+            | otherwise         = unsafeCrashWith "Vector3>>vec3': wrong array length!"
 
 i3 :: Vec3 Number
 i3 = Vec [1.0,0.0,0.0]
@@ -59,4 +58,4 @@ set3Z n (Vec v) = Vec (unsafePartial $ fromJust (insertAt 2 n v))
 -- | The cross product of a and b
 cross :: forall a. (EuclideanRing a) => Vec3 a -> Vec3 a -> Vec3 a
 cross (Vec [x1,y1,z1]) (Vec [x2,y2,z2]) = Vec [y1*z2 - z1*y2, z1*x2 - x1*z2, x1*y2 - y1*x2]
-cross _ _ = fail "Vector3>>cross: impossible!"
+cross _ _ = unsafeCrashWith "Vector3>>cross: impossible!"
