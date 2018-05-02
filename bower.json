@@ -38,6 +38,5 @@
     "purescript-random": "^3.0.0"
   },
   "resolutions": {
-    "purescript-extensions": "^2.2.0"
   }
 }
