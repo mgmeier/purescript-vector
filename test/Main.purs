@@ -1,17 +1,19 @@
 module Test.Main where
 
 import Prelude
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Console (CONSOLE, log)
-import Test.Assert (ASSERT, assert)
+
+import Effect (Effect)
+import Effect.Console (log)
 import Data.Array (unsafeIndex)
 import Data.Vector (fromArray, toArray) as V
 import Data.Vector2 (Vec2, vec2, vec2') as V
 import Data.Vector3 (Vec3, vec3, vec3') as V
 import Data.Vector4 (Vec4, vec4, vec4') as V
+import Partial.Unsafe (unsafePartial)
+import Test.Assert (assert)
 
-main ::  forall eff. Partial => Eff (console :: CONSOLE, assert :: ASSERT | eff) Unit
-main = testVector
+main :: Effect Unit
+main = unsafePartial $ testVector
 
 a2 :: Array Number
 a2 = [1.0,2.0]
@@ -20,7 +22,7 @@ a3 = [1.0,2.0,3.0]
 a4 :: Array Number
 a4 = [1.0,2.0,3.0,4.0]
 
-testVector ::  forall eff. Partial => Eff (console :: CONSOLE, assert :: ASSERT | eff) Unit
+testVector :: Partial => Effect Unit
 testVector = do
 
   log "toArray after fromArray results in equality"

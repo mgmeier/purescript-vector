@@ -15,13 +15,13 @@ module Data.Vector where
 
 import Prelude
 import Data.Array (zipWith, length)
-import Data.Monoid (mempty)
 import Data.Foldable (class Foldable, foldl, foldr)
+import Data.Unfoldable (replicate)
 import Data.TypeNat (class Sized, sized)
+import Partial.Unsafe (unsafeCrashWith)
 import Control.Apply (lift2)
 import Math (sqrt)
 import Type.Proxy (Proxy(..))
-import Extensions (fail, replicate)
 
 newtype Vec s a = Vec (Array a)
 
@@ -33,7 +33,7 @@ fromArray l =
   let res = Vec l
   in case sized (Proxy :: Proxy s) of
         i | i == length l -> res
-          | otherwise     -> fail "Vector>>fromArray: wrong array length!"
+        | otherwise     -> unsafeCrashWith "Vector>>fromArray: wrong array length!"
 
 toArray :: forall s a. Vec s a -> Array a
 toArray (Vec a) = a
