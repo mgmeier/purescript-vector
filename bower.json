@@ -1,13 +1,9 @@
 {
   "name": "purescript-vector",
   "homepage": "https://github.com/jutaro/purescript-vector",
-  "authors": [
-    "Juergen Nicklisch-Franken <jnf@arcor.de>"
-  ],
+  "authors": ["Juergen Nicklisch-Franken <jnf@arcor.de>"],
   "description": "Vectors for purescript",
-  "keywords": [
-    "purescript"
-  ],
+  "keywords": ["purescript"],
   "repository": {
     "type": "git",
     "url": "git://github.com/jutaro/purescript-vector.git"
