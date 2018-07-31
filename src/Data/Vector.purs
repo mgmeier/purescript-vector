@@ -15,7 +15,6 @@ module Data.Vector where
 
 import Prelude
 import Data.Array (zipWith, length)
-import Data.Monoid (mempty)
 import Data.Foldable (class Foldable, foldl, foldr)
 import Data.Unfoldable (replicate)
 import Data.TypeNat (class Sized, sized)
