@@ -1,5 +1,5 @@
 {
-  description = "purescript-linear-algebra";
+  description = "purescript-vector";
 
   inputs = {
 
@@ -23,7 +23,7 @@
 
     } // flake-utils.lib.eachSystem ["x86_64-linux" "x86_64-darwin" "aarch64-darwin"] (system: let
       
-      name = "purescript-linear-algebra";
+      name = "purescript-vector";
       lib = nixpkgs.lib;
 
       overlays = [
