@@ -14,11 +14,11 @@
 module Data.Vector2 where
 
 import Prelude
-import Data.Vector (Vec(Vec))
-import Data.TypeNat (Two)
+
 import Data.Array (insertAt, length, unsafeIndex)
-import Data.Maybe(fromJust)
-import Extensions (fail)
+import Data.Maybe (fromJust)
+import Data.TypeNat (Two)
+import Data.Vector (Vec(Vec), fail)
 import Partial.Unsafe (unsafePartial)
 
 type Vec2 = Vec Two
