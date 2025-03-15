@@ -20,16 +20,17 @@ data Two
 data Three
 data Four
 
+class Sized :: Type -> Constraint
 class Sized a where
   sized :: Proxy a -> Int
 
-instance sz :: Sized Zero where
+instance Sized Zero where
   sized _ = 0
-instance s1 :: Sized One where
+instance Sized One where
   sized _ = 1
-instance s2 :: Sized Two where
+instance Sized Two where
   sized _ = 2
-instance s3 :: Sized Three where
+instance Sized Three where
   sized _ = 3
-instance s4 :: Sized Four where
+instance Sized Four where
   sized _ = 4

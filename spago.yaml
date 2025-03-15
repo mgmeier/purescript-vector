@@ -1,0 +1,15 @@
+package:
+  dependencies:
+    - arrays
+    - assert
+    - effect
+    - either
+    - exceptions
+    - foldable-traversable
+    - numbers
+    - prelude
+  name: vector
+workspace:
+  extraPackages: {}
+  packageSet:
+    url: https://raw.githubusercontent.com/purescript/package-sets/psc-0.15.15-20250222/packages.json

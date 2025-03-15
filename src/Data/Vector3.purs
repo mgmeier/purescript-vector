@@ -10,7 +10,6 @@
 --
 --
 -----------------------------------------------------------------------------
-
 module Data.Vector3 where
 
 import Prelude
@@ -18,9 +17,12 @@ import Data.Vector (Vec(Vec))
 import Data.TypeNat (Three)
 import Data.Array (insertAt, length, unsafeIndex)
 import Data.Maybe (fromJust)
-import Extensions (fail)
 import Partial.Unsafe (unsafePartial)
+import Effect.Exception.Unsafe (unsafeThrow)
 
+-- Helper function for failing
+fail :: forall a. String -> a
+fail = unsafeThrow
 
 type Vec3 = Vec Three
 
@@ -57,6 +59,6 @@ set3Z :: forall a. a -> Vec3 a -> Vec3 a
 set3Z n (Vec v) = Vec (unsafePartial $ fromJust (insertAt 2 n v))
 
 -- | The cross product of a and b
-cross :: forall a. (EuclideanRing a) => Vec3 a -> Vec3 a -> Vec3 a
+cross :: forall a. Ring a => Vec3 a -> Vec3 a -> Vec3 a
 cross (Vec [x1,y1,z1]) (Vec [x2,y2,z2]) = Vec [y1*z2 - z1*y2, z1*x2 - x1*z2, x1*y2 - y1*x2]
 cross _ _ = fail "Vector3>>cross: impossible!"
